@@ -1,0 +1,13 @@
+# requirements.txt
+
+# Core Azure Functions libraries - using specific, compatible versions
+azure-functions
+azure-functions-durable
+azure-identity
+# Your other required libraries
+requests
+azure-storage-blob
+pandas
+pyarrow
+pyodbc
+python-dateutil
