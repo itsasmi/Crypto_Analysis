@@ -5,7 +5,7 @@ import datetime
 
 bp = func.Blueprint()
 
-@bp.timer_trigger(schedule="0 45 6 * * *", arg_name="timer")
+@bp.timer_trigger(schedule="0 00 7 * * *", arg_name="timer")
 @bp.durable_client_input(client_name="client")
 async def daily_timer_trigger(timer: func.TimerRequest, client: df.DurableOrchestrationClient) -> None:
     """
