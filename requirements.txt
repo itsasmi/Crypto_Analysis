@@ -1,19 +1,7 @@
-# # requirements.txt
-# # Core Azure Functions libraries - using specific, compatible versions
-# azure-functions
-# azure-functions-durable
-# azure-identity
-# # Your other required libraries
-# requests
-# azure-storage-blob
-# pandas
-# pyarrow
-# pyodbc
-# python-dateutil
-# Core Azure Functions libraries - specific compatible versions
-azure-functions==1.18.0
-azure-functions-durable==1.2.9
-azure-identity==1.15.0
+# Core Azure Functions
+azure-functions
+azure-functions-durable
+azure-identity
 
 # Data processing
 requests==2.31.0
@@ -27,6 +15,5 @@ azure-storage-blob==12.19.0
 # Database
 pyodbc==5.0.1
 
-# Cryptography - use version compatible with Azure Linux environment
-# This version has pre-built wheels for manylinux and avoids GLIBC issues
-cryptography==43.0.3
+# Cryptography (Azure Linux compatible)
+cryptography<42
