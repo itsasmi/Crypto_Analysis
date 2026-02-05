@@ -30,7 +30,7 @@ jobs:
       - name: Zip artifact for deployment
         run: |
           # Create zip from current directory contents, not the directory itself
-          zip -r release.zip . -x ".git/*" -x ".github/*" -x "*.pyc" -x "__pycache__/*"
+          zip -r release.zip . \ -x ".git/*" \ -x ".github/*" \ -x "*.pyc" \ -x "__pycache__/*" \ -x ".gitignore" \  -x ".vscode/*" \ -x "*.md"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -68,3 +68,4 @@ jobs:
           app-name: 'raw-ingestion'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
