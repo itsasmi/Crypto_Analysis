@@ -4,8 +4,14 @@
     "applicationInsights": {
       "samplingSettings": {
         "isEnabled": true,
-        "excludedTypes": "Request"
+        "maxTelemetryItemsPerSecond": 20
       }
+    },
+    "logLevel": {
+      "default": "Information",
+      "Host.Results": "Information",
+      "Function": "Information",
+      "Host.Aggregator": "Trace"
     }
   },
   "extensionBundle": {
@@ -14,7 +20,21 @@
   },
   "extensions": {
     "durableTask": {
-      "hubName": "NewTaskHubName"
+      "hubName": "NewTaskHubName",
+      "storageProvider": {
+        "type": "azure_storage",
+        "connectionStringName": "AzureWebJobsStorage"
+      },
+      "maxConcurrentActivityFunctions": 10,
+      "maxConcurrentOrchestratorFunctions": 10,
+      "extendedSessionsEnabled": true,
+      "extendedSessionIdleTimeoutInSeconds": 30
+    },
+    "http": {
+      "routePrefix": "api",
+      "maxOutstandingRequests": 200,
+      "maxConcurrentRequests": 100,
+      "dynamicThrottlesEnabled": true
     }
   }
 }

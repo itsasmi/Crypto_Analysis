@@ -45,7 +45,7 @@ def resume_synapse_activity(dummy: str) -> str:
         
         # Check current status first
         response = requests.get(url, headers=headers)
-        response.raise_for_status() # Raise an exception for HTTP errors
+        response.raise_for_status() # raise an exception for HTTP errors
         status = response.json().get("properties", {}).get("status")
         logging.info(f"Activity resume_synapse_activity: Current status is {status}")
         
