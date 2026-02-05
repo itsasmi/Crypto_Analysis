@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' 
-  PYTHON_VERSION: '3.11' 
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+  PYTHON_VERSION: '3.11'
 
 jobs:
   build:
@@ -28,8 +28,9 @@ jobs:
           pip install -r requirements.txt --target=".python_packages/lib/site-packages"
 
       - name: Zip artifact for deployment
-        # FIX: Ensure we are in the root and zipping the current directory contents
-        run: zip -r release.zip ./*
+        run: |
+          # Create zip from current directory contents, not the directory itself
+          zip -r release.zip . -x ".git/*" -x ".github/*" -x "*.pyc" -x "__pycache__/*"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -43,6 +44,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -50,10 +52,8 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: |
-          unzip release.zip
-          rm release.zip
-        
+        run: unzip release.zip
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
