@@ -8,3 +8,7 @@ test
 .venv
 __pycache__
 *.pyc
+.github
+venv
+*.md
+.env
